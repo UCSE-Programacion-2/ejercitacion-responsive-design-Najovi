@@ -1,4 +1,6 @@
-/* Estilos Generales */
+/* ============================================================
+   ESTILOS GENERALES
+   ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;300&display=swap');
 
 :root {
@@ -15,11 +17,15 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    font-weight: 300px;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
 img {
     max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 li {
@@ -48,7 +54,7 @@ nav ul li a {
 }
 
 .bg-header {
-    background-image: url("../img/bg-header.jpg"), -webkit-linear-gradient(top, #cbe3ba, #a6cc8b);
+    background-image: url("../img/bg-header.jpg"), linear-gradient(to bottom, #cbe3ba, #a6cc8b);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -57,71 +63,87 @@ nav ul li a {
     justify-content: center;
     align-items: center;
     height: 300px;
+    text-align: center;
 }
 
 .bg-header h1 {
-    font-weight: 500px;
+    font-weight: 500;
+    font-size: 2.5rem;
 }
 
-/* Estilos section */
+/* ============================================================
+   SECCIONES Y CONTENEDORES
+   ============================================================ */
 section,
 footer {
     padding: 40px;
 }
 
-section>div {
-
+section > div {
     display: flex;
 }
 
 h2 {
     font-size: 2rem;
     text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
-/* Estilos cards */
-#card-section>div {
+/* ============================================================
+   CARDS (Desktop)
+   ============================================================ */
+#card-section > div {
     display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .card {
     border-radius: 20px;
-    padding: 20px;
-    width: 50%;
+    width: 30%; 
     border: 1px solid #ccc;
     box-shadow: 2px 2px 6px #ccc;
-    margin: 20px 10px;
-
+    overflow: hidden;
+    background-color: #fff;
 }
 
-.card>h3 {
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card h3, .card p {
+    padding: 15px 20px;
+}
+
+.card > h3 {
     color: var(--color-secundario);
     font-size: 1.5em;
-    margin: 20px 0;
+    margin: 10px 0 0;
 }
 
-/* Estilos contacto*/
-.contacto,
-.formulario {
-    padding: 30px;
-}
-
-.contacto {
-    width: 50%;
-    text-align: right;
-}
-
-.contacto>p {
-    line-height: 2;
+.card p {
     color: var(--color-texto);
 }
 
-.contacto>p>span {
-    font-weight: bold;
+/* ============================================================
+   CONTACTO Y FORMULARIO
+   ============================================================ */
+.contacto,
+.formulario {
+    padding: 30px;
+    width: 50%;
 }
 
-.formulario {
-    width: 50%;
+.contacto {
+    text-align: right;
+}
+
+.contacto > p {
+    line-height: 2;
+    color: var(--color-texto);
 }
 
 form {
@@ -129,58 +151,112 @@ form {
     display: flex;
     flex-direction: column;
     background-color: var(--color-principal);
-    padding: 40px 40px 10px;
+    padding: 40px;
+    border-radius: 10px;
 }
 
 form input {
-    margin-bottom: 30px;
-}
-
-input {
+    margin-bottom: 20px;
     border-radius: 20px;
-    outline: none;
-    padding: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
 }
 
 input[type="submit"] {
-    background-color: var(--color-principal);
+    background-color: transparent;
     border: 2px solid #fff;
     color: #fff;
-
+    cursor: pointer;
 }
 
-/*footer*/
+/* ============================================================
+   FOOTER
+   ============================================================ */
 footer {
     background-color: var(--color-principal);
     display: flex;
 }
 
-footer>div {
+footer > div {
     width: 50%;
-}
-
-footer h4 {
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-footer ul {
-    line-height: 2.5;
 }
 
 .news-letter {
     position: relative;
+    display: flex;
 }
 
-.news-letter>input[type="text"] {
+.news-letter > input[type="text"] {
     width: 100%;
+    padding-right: 110px;
 }
 
-.news-letter>input[type="submit"] {
+.news-letter > input[type="submit"] {
     position: absolute;
     width: 100px;
     right: 0;
 }
 
-/*** Responsive */
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
 
+/* 1. TABLET (max-width: 768px) - CORREGIDO: 1 carta por ancho */
+@media screen and (max-width: 768px) {
+    
+    #card-section > div {
+        flex-direction: column; /* Apila las cartas verticalmente */
+        align-items: center;
+    }
+
+    .card {
+        width: 100%; /* Cada carta ocupa todo el ancho */
+        margin-bottom: 20px; /* Espacio entre cartas apiladas */
+    }
+
+    section > div, 
+    footer {
+        flex-direction: column;
+    }
+
+    .formulario, 
+    .contacto, 
+    footer > div {
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .contacto {
+        text-align: center;
+    }
+}
+
+/* 2. MÓVIL (max-width: 450px) */
+@media screen and (max-width: 450px) {
+    .bg-header h1 {
+        font-size: 1.8rem;
+    }
+
+    nav ul {
+        justify-content: center;
+    }
+
+    section, footer {
+        padding: 20px;
+    }
+
+    .news-letter {
+        flex-direction: column;
+    }
+
+    .news-letter > input[type="text"] {
+        padding-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .news-letter > input[type="submit"] {
+        position: static;
+        width: 100%;
+    }
+}
